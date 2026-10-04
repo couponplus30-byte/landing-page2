@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رواق | منصة التعليم الأولى في العالم العربي</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { cairo: ['Cairo', 'sans-serif'] },
+      colors: {
+        primary: '#0F766E',
+        primaryDark: '#0B5D56',
+        secondary: '#F59E0B',
+        soft: '#F0FDFA'
+      }
+    }
+  }
+}
+</script>
+<style>
+*{font-family:'Cairo',sans-serif}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:#0F766E;border-radius:10px}
+.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.glass{backdrop-filter:blur(12px);background:rgba(255,255,255,0.85)}
+</style>
+</head>
+<body class="bg-[#FCFCF9] text-zinc-800 overflow-x-hidden">
+
+<!-- Top Bar -->
+<div class="bg-[#0B1A1A] text-white text-sm py-2 px-4 hidden md:block">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="flex gap-6">
+      <span><i class="fa-solid fa-phone ml-2 text-secondary"></i>+966 55 123 4567</span>
+      <span><i class="fa-regular fa-envelope ml-2 text-secondary"></i>hello@riwaq.sa</span>
+    </div>
+    <div class="flex gap-4 items-center">
+      <span>تابعنا:</span>
+      <div class="flex gap-3">
+        <a href="#" class="hover:text-secondary transition"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="hover:text-secondary transition"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="hover:text-secondary transition"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="hover:text-secondary transition"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+      <span class="mr-4 bg-white/10 px-3 py-1 rounded-full text-xs">خصم 40% لفترة محدودة <a href="#pricing" class="underline text-secondary">اشترك الآن</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="sticky top-0 z-50 glass border-b border-zinc-100">
+  <div class="max-w-7xl mx-auto px-4 lg:px-6 py-3 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-8">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-black text-xl">ر</div>
+        <div>
+          <h1 class="font-black text-xl leading-none">رواق</h1>
+          <p class="text-[11px] tracking-widest text-zinc-500 font-semibold">RIWAQ ACADEMY</p>
+        </div>
+      </a>
+      <div class="hidden lg:flex items-center gap-6 text-sm font-semibold">
+        <a href="#courses" class="hover:text-primary transition">الدورات <i class="fa-solid fa-chevron-down text-[10px] mr-1"></i></a>
+        <a href="#how" class="hover:text-primary transition">كيف نعمل</a>
+        <a href="#instructors" class="hover:text-primary transition">المدربون</a>
+        <a href="#pricing" class="hover:text-primary transition">الأسعار</a>
+      </div>
+    </div>
+
+    <div class="hidden md:flex items-center flex-1 max-w-md mx-6 relative">
+      <input id="searchInput" type="text" placeholder="ابحث عن دورة، مهارة، مدرب..." class="w-full bg-zinc-100 rounded-full pr-10 pl-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 border border-transparent focus:bg-white transition">
+      <i class="fa-solid fa-magnifying-glass absolute right-4 text-zinc-400 text-sm"></i>
+    </div>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <button id="myLearningBtn" class="hidden sm:flex items-center gap-2 text-sm font-bold hover:text-primary transition">
+        <i class="fa-regular fa-bookmark"></i> تعلمي
+        <span id="enrolledCount" class="bg-secondary text-white text-xs w-5 h-5 rounded-full grid place-items-center">0</span>
+      </button>
+      <a href="#" class="hidden sm:inline-flex text-sm font-bold px-4 py-2">تسجيل دخول</a>
+      <a href="#courses" class="bg-primary hover:bg-primaryDark text-white text-sm font-bold px-5 py-2.5 rounded-full transition shadow-lg shadow-teal-900/20">ابدأ مجاناً</a>
+      <button id="menuBtn" class="lg:hidden w-10 h-10 grid place-items-center border rounded-xl"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden lg:hidden border-t bg-white px-4 py-4 space-y-3">
+    <input type="text" id="searchMobile" placeholder="ابحث عن دورة..." class="w-full bg-zinc-100 rounded-xl px-4 py-3 text-sm">
+    <a href="#courses" class="block py-2 font-bold">الدورات</a>
+    <a href="#how" class="block py-2 font-bold">كيف نعمل</a>
+    <a href="#pricing" class="block py-2 font-bold">الأسعار</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 lg:px-6 py-8 lg:py-12 grid lg:grid-cols-12 gap-8 items-center">
+    <!-- Right Content -->
+    <div class="lg:col-span-6">
+      <div class="inline-flex items-center gap-2 bg-white border rounded-full px-3 py-1.5 text-xs font-bold shadow-sm">
+        <span class="bg-secondary text-white px-2 py-0.5 rounded-full">جديد</span>
+        أكثر من 1,200 درس تفاعلي مع شهادات معتمدة
+        <span class="w-6 h-6 rounded-full bg-zinc-900 text-white grid place-items-center"><i class="fa-solid fa-arrow-left text-[10px]"></i></span>
+      </div>
+      <h1 class="text-4xl lg:text-[52px] font-black leading-[1.1] mt-6">
+        تعلم <span class="text-primary relative">بذكاء،<span class="absolute bottom-2 right-0 w-full h-3 bg-secondary/30 -z-10"></span></span><br>
+        تقدم بسرعة،<br>
+        وحقق حلمك.
+      </h1>
+      <p class="text-zinc-500 mt-4 leading-7 max-w-xl">منصة عربية متكاملة تجمع أفضل الخبراء والدروس العملية. تابع تقدمك، احصل على شهادات معتمدة، وانضم لمجتمع أكثر من 85 ألف متعلم.</p>
+      
+      <div class="flex flex-wrap gap-3 mt-6">
+        <a href="#courses" class="bg-primary text-white px-7 py-3.5 rounded-full font-bold flex items-center gap-2 hover:bg-primaryDark transition">استكشف الدروس <i class="fa-solid fa-arrow-left"></i></a>
+        <button onclick="openVideo()" class="bg-white border px-7 py-3.5 rounded-full font-bold flex items-center gap-2 hover:bg-zinc-50 transition"><span class="w-8 h-8 rounded-full bg-zinc-900 text-white grid place-items-center"><i class="fa-solid fa-play text-xs"></i></span> شاهد كيف تعمل المنصة</button>
+      </div>
+
+      <div class="flex items-center gap-6 mt-8">
+        <div class="flex -space-x-2 space-x-reverse">
+          <img src="https://i.pravatar.cc/100?img=11" class="w-9 h-9 rounded-full border-2 border-white">
+          <img src="https://i.pravatar.cc/100?img=22" class="w-9 h-9 rounded-full border-2 border-white">
+          <img src="https://i.pravatar.cc/100?img=33" class="w-9 h-9 rounded-full border-2 border-white">
+          <img src="https://i.pravatar.cc/100?img=44" class="w-9 h-9 rounded-full border-2 border-white">
+        </div>
+        <div class="text-sm">
+          <div class="flex text-secondary text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> <span class="text-zinc-900 font-black mr-1">4.9/5</span></div>
+          <p class="font-bold">يثق بنا +85,000 متعلم</p>
+        </div>
+        <div class="hidden sm:flex items-center gap-3 border-r pr-6">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="w-8">
+          <div class="text-xs"><p class="font-black">شراكات معتمدة</p><p class="text-zinc-500">Google • Meta • Coursera</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left Visual -->
+    <div class="lg:col-span-6 relative">
+      <div class="relative bg-[#E8F5F3] rounded-[32px] p-4 lg:p-6 overflow-hidden">
+        <div class="absolute top-6 left-6 bg-white rounded-2xl px-3 py-2 shadow-lg flex items-center gap-2 text-xs font-bold">
+          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> مباشر الآن: ورشة تصميم المنتجات
+        </div>
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" class="w-full h-[380px] lg:h-[460px] object-cover rounded-[24px]">
+        
+        <!-- Floating Card 1 -->
+        <div class="absolute bottom-6 right-6 bg-white rounded-2xl p-4 shadow-xl w-[260px]">
+          <div class="flex justify-between items-center mb-3">
+            <p class="font-black text-sm">تقدمك الأسبوعي</p>
+            <span class="text-xs bg-soft text-primary px-2 py-1 rounded-full font-bold">+12% هذا الأسبوع</span>
+          </div>
+          <div class="flex items-end gap-1 h-16">
+            <div class="flex-1 bg-zinc-100 rounded-t-lg h-[40%]"></div>
+            <div class="flex-1 bg-zinc-100 rounded-t-lg h-[65%]"></div>
+            <div class="flex-1 bg-zinc-100 rounded-t-lg h-[50%]"></div>
+            <div class="flex-1 bg-primary rounded-t-lg h-[85%]"></div>
+            <div class="flex-1 bg-zinc-900 rounded-t-lg h-[100%]"></div>
+            <div class="flex-1 bg-secondary rounded-t-lg h-[75%]"></div>
+          </div>
+          <div class="flex justify-between text-[10px] text-zinc-400 mt-2"><span>السبت</span><span>الأحد</span><span>الإثنين</span><span>الثلاثاء</span><span>الأربعاء</span><span>الخميس</span></div>
+        </div>
+
+        <!-- Floating Card 2 -->
+        <div class="absolute top-28 -left-2 lg:left-2 bg-white rounded-2xl p-3 shadow-xl flex items-center gap-3 w-[220px]">
+          <img src="https://i.pravatar.cc/100?img=15" class="w-10 h-10 rounded-full">
+          <div class="flex-1">
+            <p class="text-xs font-black">أ. سارة القحطاني</p>
+            <p class="text-[11px] text-zinc-500">أكملت درس Figma المتقدم</p>
+          </div>
+          <span class="w-7 h-7 bg-green-500 text-white grid place-items-center rounded-full"><i class="fa-solid fa-check text-xs"></i></span>
+        </div>
+      </div>
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-3 mt-4">
+        <div class="bg-white border rounded-2xl p-4 text-center">
+          <p class="text-2xl font-black">+350</p><p class="text-xs text-zinc-500 font-bold">دورة تدريبية</p>
+        </div>
+        <div class="bg-zinc-900 text-white rounded-2xl p-4 text-center">
+          <p class="text-2xl font-black">98%</p><p class="text-xs text-zinc-400 font-bold">نسبة الرضا</p>
+        </div>
+        <div class="bg-secondary text-white rounded-2xl p-4 text-center">
+          <p class="text-2xl font-black">24/7</p><p class="text-xs font-bold">دعم فني</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="max-w-7xl mx-auto px-4 lg:px-6 py-6">
+  <div class="flex flex-wrap gap-3 justify-between items-center">
+    <h3 class="font-black text-lg">استكشف حسب المجال</h3>
+    <div id="categoryFilters" class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+      <button data-cat="all" class="cat-btn active bg-zinc-900 text-white px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap">الكل</button>
+      <button data-cat="برمجة" class="cat-btn bg-white border px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap hover:bg-zinc-50">البرمجة والتقنية</button>
+      <button data-cat="تصميم" class="cat-btn bg-white border px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap hover:bg-zinc-50">التصميم والإبداع</button>
+      <button data-cat="أعمال" class="cat-btn bg-white border px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap hover:bg-zinc-50">الأعمال والتسويق</button>
+      <button data-cat="لغة" class="cat-btn bg-white border px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap hover:bg-zinc-50">اللغات</button>
+      <button data-cat="ذكاء" class="cat-btn bg-white border px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap hover:bg-zinc-50">الذكاء الاصطناعي</button>
+    </div>
+  </div>
+</section>
+
+<!-- Courses Grid -->
+<section id="courses" class="max-w-7xl mx-auto px-4 lg:px-6 py-6">
+  <div class="flex justify-between items-end mb-6">
+    <div>
+      <h2 class="text-2xl lg:text-3xl font-black">دروس مختارة لك</h2>
+      <p class="text-zinc-500 text-sm mt-1">دروس عملية مع مشاريع حقيقية وشهادات معتمدة</p>
+    </div>
+    <div class="hidden md:flex items-center gap-2">
+      <select id="levelFilter" class="border rounded-full px-4 py-2 text-sm font-bold bg-white">
+        <option value="all">كل المستويات</option>
+        <option value="مبتدئ">مبتدئ</option>
+        <option value="متوسط">متوسط</option>
+        <option value="متقدم">متقدم</option>
+      </select>
+      <select id="sortFilter" class="border rounded-full px-4 py-2 text-sm font-bold bg-white">
+        <option value="popular">الأكثر شعبية</option>
+        <option value="new">الأحدث</option>
+        <option value="price-low">السعر: من الأقل</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="coursesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <!-- Injected via JS -->
+  </div>
+
+  <div id="noResults" class="hidden text-center py-16">
+    <p class="text-5xl mb-4">🔍</p>
+    <p class="font-black text-lg">لا توجد نتائج مطابقة</p>
+    <p class="text-zinc-500 text-sm">جرب كلمات بحث أخرى أو غير الفلتر</p>
+  </div>
+</section>
+
+<!-- My Learning Drawer -->
+<div id="learningDrawer" class="fixed inset-0 z-[60] hidden">
+  <div class="absolute inset-0 bg-black/40" onclick="toggleDrawer()"></div>
+  <div class="absolute left-0 top-0 h-full w-full max-w-md bg-white shadow-2xl overflow-y-auto">
+    <div class="p-6 border-b flex justify-between items-center sticky top-0 bg-white">
+      <h3 class="font-black text-xl">رحلتي التعليمية</h3>
+      <button onclick="toggleDrawer()" class="w-9 h-9 grid place-items-center border rounded-full hover:bg-zinc-50"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="enrolledList" class="p-6 space-y-4">
+      <div class="text-center py-12 text-zinc-400">
+        <i class="fa-regular fa-face-smile text-4xl mb-3 block"></i>
+        <p class="font-bold">لم تنضم لأي دورة بعد</p>
+        <p class="text-sm">ابدأ رحلتك الآن واختر أول درس</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- How it works -->
+<section id="how" class="bg-white border-y mt-8">
+  <div class="max-w-7xl mx-auto px-4 lg:px-6 py-14">
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div>
+        <p class="text-primary font-black text-sm tracking-widest">كيف تعمل المنصة؟</p>
+        <h2 class="text-3xl font-black mt-2 leading-tight">طريقك للاحتراف<br>في 3 خطوات بسيطة</h2>
+        <p class="text-zinc-500 text-sm mt-3 leading-6">نظام تعلم مرن يناسب وقتك، مع متابعة شخصية ومشاريع عملية تبني بها معرض أعمالك.</p>
+        <a href="#courses" class="inline-flex mt-6 bg-zinc-900 text-white px-6 py-3 rounded-full font-bold text-sm">ابدأ الآن مجاناً</a>
+      </div>
+      <div class="lg:col-span-2 grid md:grid-cols-3 gap-4">
+        <div class="bg-[#F8FAFC] rounded-[24px] p-6 border">
+          <div class="w-12 h-12 rounded-2xl bg-white border grid place-items-center text-xl">🎯</div>
+          <h4 class="font-black mt-4">1. اختر مسارك</h4>
+          <p class="text-sm text-zinc-500 mt-2 leading-6">حدد هدفك واختر من بين 12 مسار احترافي مصمم مع خبراء المجال.</p>
+          <span class="text-xs font-black mt-4 inline-block text-primary">+12 مسار متاح</span>
+        </div>
+        <div class="bg-primary text-white rounded-[24px] p-6 relative overflow-hidden">
+          <div class="w-12 h-12 rounded-2xl bg-white/15 grid place-items-center text-xl">▶️</div>
+          <h4 class="font-black mt-4">2. تعلم بالممارسة</h4>
+          <p class="text-sm text-white/80 mt-2 leading-6">شاهد دروس قصيرة (5-12 دقيقة)، طبق فوراً، واحصل على ملاحظات فورية.</p>
+          <div class="mt-4 bg-white/15 rounded-full h-2"><div class="bg-secondary h-2 rounded-full w-[68%]"></div></div>
+          <p class="text-xs mt-2">68% متوسط الإنجاز</p>
+        </div>
+        <div class="bg-[#FFF7ED] rounded-[24px] p-6 border border-orange-100">
+          <div class="w-12 h-12 rounded-2xl bg-white grid place-items-center text-xl">🎓</div>
+          <h4 class="font-black mt-4">3. احصل على شهادتك</h4>
+          <p class="text-sm text-zinc-500 mt-2 leading-6">أنهِ المشروع النهائي واحصل على شهادة معتمدة قابلة للمشاركة على لينكدإن.</p>
+          <span class="text-xs font-black mt-4 inline-block bg-secondary text-white px-3 py-1 rounded-full">شهادة معتمدة</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Instructors -->
+<section id="instructors" class="max-w-7xl mx-auto px-4 lg:px-6 py-14">
+  <div class="flex justify-between items-end">
+    <h2 class="text-2xl lg:text-3xl font-black">تعلم من نخبة الخبراء</h2>
+    <a href="#" class="hidden md:inline-flex text-sm font-black border px-5 py-2.5 rounded-full hover:bg-zinc-900 hover:text-white transition">عرض جميع المدربين</a>
+  </div>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
+    <div class="bg-white border rounded-[24px] p-5 text-center hover:shadow-lg transition">
+      <img src="https://i.pravatar.cc/200?img=32" class="w-20 h-20 rounded-full mx-auto object-cover">
+      <h4 class="font-black mt-3">د. أحمد الرفاعي</h4>
+      <p class="text-xs text-zinc-500 font-bold">خبير ذكاء اصطناعي - Google</p>
+      <div class="flex justify-center gap-1 text-secondary text-xs mt-2"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> 4.9</div>
+      <p class="text-xs text-zinc-500 mt-2">+42 ألف طالب • 18 دورة</p>
+    </div>
+    <div class="bg-white border rounded-[24px] p-5 text-center hover:shadow-lg transition">
+      <img src="https://i.pravatar.cc/200?img=26" class="w-20 h-20 rounded-full mx-auto object-cover">
+      <h4 class="font-black mt-3">سارة المنصور</h4>
+      <p class="text-xs text-zinc-500 font-bold">مصممة منتجات - Apple سابقاً</p>
+      <div class="flex justify-center gap-1 text-secondary text-xs mt-2"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> 5.0</div>
+      <p class="text-xs text-zinc-500 mt-2">+31 ألف طالب • 12 دورة</p>
+    </div>
+    <div class="bg-white border rounded-[24px] p-5 text-center hover:shadow-lg transition">
+      <img src="https://i.pravatar.cc/200?img=15" class="w-20 h-20 rounded-full mx-auto object-cover">
+      <h4 class="font-black mt-3">محمد التركي</h4>
+      <p class="text-xs text-zinc-500 font-bold">مطور Full Stack - STC</p>
+      <div class="flex justify-center gap-1 text-secondary text-xs mt-2"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i> 4.8</div>
+      <p class="text-xs text-zinc-500 mt-2">+58 ألف طالب • 24 دورة</p>
+    </div>
+    <div class="bg-white border rounded-[24px] p-5 text-center hover:shadow-lg transition">
+      <img src="https://i.pravatar.cc/200?img=48" class="w-20 h-20 rounded-full mx-auto object-cover">
+      <h4 class="font-black mt-3">نورة الفهد</h4>
+      <p class="text-xs text-zinc-500 font-bold">خبيرة تسويق - Noon</p>
+      <div class="flex justify-center gap-1 text-secondary text-xs mt-2"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> 4.9</div>
+      <p class="text-xs text-zinc-500 mt-2">+27 ألف طالب • 9 دورات</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="bg-[#0B1A1A] text-white py-14">
+  <div class="max-w-7xl mx-auto px-4 lg:px-6">
+    <div class="text-center max-w-2xl mx-auto">
+      <p class="text-secondary font-black text-sm tracking-widest">خطط مرنة للجميع</p>
+      <h2 class="text-3xl lg:text-4xl font-black mt-2">اختر الخطة التي تناسب طموحك</h2>
+      <div class="inline-flex bg-white/10 rounded-full p-1 mt-6 text-sm font-bold">
+        <button id="monthlyBtn" class="bg-white text-zinc-900 px-6 py-2 rounded-full">شهري</button>
+        <button id="yearlyBtn" class="px-6 py-2 rounded-full text-white/70">سنوي <span class="bg-secondary text-white px-2 py-0.5 rounded-full text-xs mr-1">وفر 30%</span></button>
+      </div>
+    </div>
+    <div class="grid lg:grid-cols-3 gap-6 mt-10 max-w-5xl mx-auto">
+      <div class="bg-white text-zinc-900 rounded-[28px] p-7">
+        <h4 class="font-black text-lg">المجانية</h4>
+        <p class="text-sm text-zinc-500 mt-1">جرب المنصة بدون التزام</p>
+        <p class="text-4xl font-black mt-4">0<span class="text-lg"> ر.س</span> <span class="text-sm font-normal text-zinc-500">/ للأبد</span></p>
+        <ul class="space-y-3 mt-6 text-sm font-semibold">
+          <li><i class="fa-solid fa-check text-green-500 ml-2"></i>الوصول لـ 15 دورة مجانية</li>
+          <li><i class="fa-solid fa-check text-green-500 ml-2"></i>شهادة إتمام واحدة</li>
+          <li><i class="fa-solid fa-check text-green-500 ml-2"></i>مجتمع المتعلمين</li>
+          <li class="text-zinc-400"><i class="fa-solid fa-xmark ml-2"></i>بدون تحميل الموارد</li>
+        </ul>
+        <button class="w-full mt-6 border-2 border-zinc-900 rounded-full py-3 font-black hover:bg-zinc-900 hover:text-white transition">ابدأ مجاناً</button>
+      </div>
+      <div class="bg-primary rounded-[28px] p-7 relative border-2 border-white/20 scale-[1.02] shadow-2xl">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white text-xs font-black px-4 py-1.5 rounded-full">الأكثر شعبية</span>
+        <h4 class="font-black text-lg">الاحترافية</h4>
+        <p class="text-sm text-white/70 mt-1">للمحترفين والباحثين عن وظيفة</p>
+        <p class="text-4xl font-black mt-4"><span id="proPrice">149</span><span class="text-lg"> ر.س</span> <span class="text-sm font-normal text-white/70">/ شهرياً</span></p>
+        <ul class="space-y-3 mt-6 text-sm font-semibold">
+          <li><i class="fa-solid fa-check text-secondary ml-2"></i>وصول غير محدود لكل الدورات</li>
+          <li><i class="fa-solid fa-check text-secondary ml-2"></i>شهادات معتمدة غير محدودة</li>
+          <li><i class="fa-solid fa-check text-secondary ml-2"></i>تحميل الموارد والمشاريع</li>
+          <li><i class="fa-solid fa-check text-secondary ml-2"></i>مراجعة المشاريع من الخبراء</li>
+        </ul>
+        <button onclick="toast('تم الاشتراك في الخطة الاحترافية 🎉')" class="w-full mt-6 bg-white text-primary rounded-full py-3 font-black hover:bg-zinc-100 transition">اشترك الآن</button>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-[28px] p-7 backdrop-blur">
+        <h4 class="font-black text-lg">الفرق</h4>
+        <p class="text-sm text-white/60 mt-1">للشركات والفرق الصغيرة</p>
+        <p class="text-4xl font-black mt-4">399<span class="text-lg"> ر.س</span> <span class="text-sm font-normal text-white/60">/ شهرياً</span></p>
+        <ul class="space-y-3 mt-6 text-sm font-semibold text-white/90">
+          <li><i class="fa-solid fa-check text-secondary ml-2"></i>5 مقاعد + لوحة تحكم للمدير</li>
+          <li><i class="fa-solid fa-check text-secondary ml-2"></i>تقارير تقدم مفصلة</li>
+          <li><i class="fa-solid fa-check text-secondary ml-2"></i>دعم مخصص وورش خاصة</li>
+          <li><i class="fa-solid fa-check text-secondary ml-2"></i>خصم 30% للمقاعد الإضافية</li>
+        </ul>
+        <button class="w-full mt-6 bg-secondary text-white rounded-full py-3 font-black hover:bg-amber-600 transition">تواصل مع المبيعات</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials + FAQ -->
+<section class="max-w-7xl mx-auto px-4 lg:px-6 py-14 grid lg:grid-cols-2 gap-10">
+  <div>
+    <h3 class="text-2xl font-black">ماذا يقول طلابنا؟</h3>
+    <div class="space-y-4 mt-6">
+      <div class="bg-white border rounded-2xl p-5">
+        <div class="flex gap-1 text-secondary text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="text-sm leading-6 mt-3 font-medium">"خلال 3 أشهر أنهيت مسار تطوير الويب وحصلت على أول وظيفة لي كـ Frontend. الشرح عملي جداً والدعم سريع."</p>
+        <div class="flex items-center gap-3 mt-4">
+          <img src="https://i.pravatar.cc/100?img=8" class="w-9 h-9 rounded-full"><div><p class="text-sm font-black">عبدالله الشهري</p><p class="text-xs text-zinc-500">مطور واجهات - الرياض</p></div>
+        </div>
+      </div>
+      <div class="bg-white border rounded-2xl p-5">
+        <div class="flex gap-1 text-secondary text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="text-sm leading-6 mt-3 font-medium">"أفضل منصة عربية جربتها. دروس قصيرة ومركزة، والمشاريع حقيقية أضفتها لمعرض أعمالي."</p>
+        <div class="flex items-center gap-3 mt-4">
+          <img src="https://i.pravatar.cc/100?img=5" class="w-9 h-9 rounded-full"><div><p class="text-sm font-black">لمى العتيبي</p><p class="text-xs text-zinc-500">مصممة UI/UX - جدة</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h3 class="text-2xl font-black">أسئلة شائعة</h3>
+    <div class="space-y-3 mt-6" id="faq">
+      <div class="faq-item bg-white border rounded-2xl">
+        <button class="w-full flex justify-between items-center p-5 font-bold text-sm">هل الشهادات معتمدة؟ <i class="fa-solid fa-plus text-zinc-400"></i></button>
+        <div class="hidden px-5 pb-5 text-sm text-zinc-500 leading-6">نعم، جميع شهاداتنا معتمدة ويمكنك مشاركتها مباشرة على LinkedIn وإضافتها لسيرتك الذاتية. لدينا شراكات مع جهات تقنية معروفة.</div>
+      </div>
+      <div class="faq-item bg-white border rounded-2xl">
+        <button class="w-full flex justify-between items-center p-5 font-bold text-sm">هل يمكنني التعلم من الجوال؟ <i class="fa-solid fa-plus text-zinc-400"></i></button>
+        <div class="hidden px-5 pb-5 text-sm text-zinc-500 leading-6">بالطبع، المنصة تعمل بكفاءة على الجوال والتابلت، ويمكنك تحميل الدروس للمشاهدة بدون إنترنت في الخطة الاحترافية.</div>
+      </div>
+      <div class="faq-item bg-white border rounded-2xl">
+        <button class="w-full flex justify-between items-center p-5 font-bold text-sm">هل يوجد استرداد للمبلغ؟ <i class="fa-solid fa-plus text-zinc-400"></i></button>
+        <div class="hidden px-5 pb-5 text-sm text-zinc-500 leading-6">نعم، ضمان استرداد كامل خلال 14 يوم إذا لم تكن راضياً عن التجربة بدون أي أسئلة.</div>
+      </div>
+      <div class="faq-item bg-white border rounded-2xl">
+        <button class="w-full flex justify-between items-center p-5 font-bold text-sm">كم مدة كل درس؟ <i class="fa-solid fa-plus text-zinc-400"></i></button>
+        <div class="hidden px-5 pb-5 text-sm text-zinc-500 leading-6">الدروس مصممة لتكون قصيرة ومركزة بين 5 إلى 15 دقيقة لتناسب وقتك وتساعدك على التركيز والتطبيق الفوري.</div>
+      </div>
+    </div>
+    <div class="bg-soft border border-teal-100 rounded-2xl p-5 mt-6 flex items-center justify-between">
+      <div>
+        <p class="font-black">ما زال لديك سؤال؟</p>
+        <p class="text-sm text-zinc-500">فريقنا جاهز للمساعدة خلال دقائق</p>
+      </div>
+      <a href="#" class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-bold">تواصل معنا</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="max-w-7xl mx-auto px-4 lg:px-6 pb-10">
+  <div class="bg-zinc-900 rounded-[32px] p-8 lg:p-12 relative overflow-hidden text-center text-white">
+    <div class="absolute -top-20 -right-20 w-72 h-72 bg-primary rounded-full blur-3xl opacity-30"></div>
+    <div class="absolute -bottom-20 -left-20 w-72 h-72 bg-secondary rounded-full blur-3xl opacity-20"></div>
+    <h2 class="text-3xl lg:text-4xl font-black relative">ابدأ رحلتك التعليمية اليوم</h2>
+    <p class="text-white/70 mt-3 relative">انضم لآلاف المتعلمين وطور مهاراتك مع أفضل الخبراء العرب</p>
+    <div class="flex flex-wrap justify-center gap-3 mt-8 relative">
+      <a href="#courses" class="bg-white text-zinc-900 px-8 py-3.5 rounded-full font-black">ابدأ مجاناً الآن</a>
+      <a href="#pricing" class="bg-white/10 border border-white/20 px-8 py-3.5 rounded-full font-black backdrop-blur">عرض الخطط</a>
+    </div>
+    <p class="text-xs text-white/50 mt-4 relative">لا تحتاج بطاقة بنكية • إلغاء في أي وقت</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t bg-white">
+  <div class="max-w-7xl mx-auto px-4 lg:px-6 py-10 grid md:grid-cols-5 gap-8">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-black">ر</div>
+        <span class="font-black text-xl">رواق</span>
+      </div>
+      <p class="text-sm text-zinc-500 mt-3 leading-6 max-w-sm">منصة تعليم عربية تهدف لتمكين الشباب العربي بالمهارات الأكثر طلباً في سوق العمل من خلال محتوى عملي ومدربين خبراء.</p>
+      <div class="flex gap-2 mt-4">
+        <a href="#" class="w-9 h-9 rounded-full bg-zinc-900 text-white grid place-items-center"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-zinc-900 text-white grid place-items-center"><i class="fa-brands fa-instagram text-sm"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-zinc-900 text-white grid place-items-center"><i class="fa-brands fa-youtube text-sm"></i></a>
+      </div>
+    </div>
+    <div>
+      <h5 class="font-black text-sm">المنصة</h5>
+      <ul class="space-y-2 mt-4 text-sm text-zinc-500 font-medium">
+        <li><a href="#" class="hover:text-primary">جميع الدورات</a></li>
+        <li><a href="#" class="hover:text-primary">المسارات</a></li>
+        <li><a href="#" class="hover:text-primary">المدربون</a></li>
+        <li><a href="#" class="hover:text-primary">الشهادات</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-black text-sm">الدعم</h5>
+      <ul class="space-y-2 mt-4 text-sm text-zinc-500 font-medium">
+        <li><a href="#" class="hover:text-primary">مركز المساعدة</a></li>
+        <li><a href="#" class="hover:text-primary">تواصل معنا</a></li>
+        <li><a href="#" class="hover:text-primary">الشروط والأحكام</a></li>
+        <li><a href="#" class="hover:text-primary">سياسة الخصوصية</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-black text-sm">النشرة البريدية</h5>
+      <p class="text-xs text-zinc-500 mt-2">احصل على درس مجاني كل أسبوع</p>
+      <form onsubmit="event.preventDefault(); toast('تم الاشتراك بنجاح ✓'); this.reset()" class="flex gap-2 mt-3">
+        <input type="email" required placeholder="بريدك الإلكتروني" class="flex-1 bg-zinc-100 rounded-full px-4 py-2.5 text-sm focus:outline-none">
+        <button class="bg-primary text-white px-5 py-2.5 rounded-full text-sm font-bold">اشتراك</button>
+      </form>
+    </div>
+  </div>
+  <div class="border-t py-4 text-center text-xs text-zinc-500 font-medium">© 2026 رواق أكاديمي. جميع الحقوق محفوظة. صُنع بـ ♥ في الرياض</div>
+</footer>
+
+<!-- Video Modal -->
+<div id="videoModal" class="fixed inset-0 z-[70] hidden">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeVideo()"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-3xl bg-black rounded-2xl overflow-hidden shadow-2xl">
+    <div class="flex justify-between items-center p-3 bg-zinc-900 text-white">
+      <p class="font-bold text-sm">معاينة الدرس - مقدمة في التصميم</p>
+      <button onclick="closeVideo()" class="w-8 h-8 grid place-items-center bg-white/10 rounded-full"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="aspect-video bg-zinc-900 grid place-items-center relative">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&q=80" class="w-full h-full object-cover opacity-60">
+      <button class="absolute w-16 h-16 bg-white rounded-full grid place-items-center shadow-xl"><i class="fa-solid fa-play text-zinc-900 ml-1"></i></button>
+      <div class="absolute bottom-0 w-full p-3">
+        <div class="bg-white/90 rounded-full h-1.5"><div class="bg-primary h-1.5 rounded-full w-[35%]"></div></div>
+        <div class="flex justify-between text-white text-xs mt-2"><span>02:14 / 06:30</span><span>HD • عربي</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lesson Modal -->
+<div id="lessonModal" class="fixed inset-0 z-[70] hidden">
+  <div class="absolute inset-0 bg-black/50" onclick="closeLesson()"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-5xl bg-white rounded-[24px] overflow-hidden max-h-[90vh] flex flex-col">
+    <div class="flex justify-between items-center p-5 border-b">
+      <h3 id="lessonTitle" class="font-black text-lg"></h3>
+      <button onclick="closeLesson()" class="w-9 h-9 border rounded-full grid place-items-center"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="grid lg:grid-cols-3 flex-1 overflow-y-auto">
+      <div class="lg:col-span-2 p-5">
+        <div class="aspect-video bg-zinc-900 rounded-2xl overflow-hidden relative">
+          <img id="lessonImage" src="" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/20 grid place-items-center">
+            <button class="w-14 h-14 bg-white rounded-full grid place-items-center shadow-lg"><i class="fa-solid fa-play ml-1"></i></button>
+          </div>
+        </div>
+        <div class="flex gap-2 mt-4 text-xs font-bold">
+          <span class="bg-soft text-primary px-3 py-1.5 rounded-full">فيديو • 12 دقيقة</span>
+          <span class="bg-zinc-100 px-3 py-1.5 rounded-full">ملفات للتحميل</span>
+          <span class="bg-zinc-100 px-3 py-1.5 rounded-full">اختبار قصير</span>
+        </div>
+        <h4 class="font-black mt-6">عن هذا الدرس</h4>
+        <p id="lessonDesc" class="text-sm text-zinc-500 leading-7 mt-2"></p>
+        <div class="bg-zinc-50 rounded-2xl p-4 mt-4">
+          <p class="font-black text-sm">ماذا ستتعلم؟</p>
+          <ul class="text-sm text-zinc-600 mt-2 space-y-1 list-disc pr-5">
+            <li>فهم الأساسيات وتطبيقها عملياً</li>
+            <li>بناء مشروع صغير بنهاية الدرس</li>
+            <li>الحصول على ملاحظات فورية</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-r bg-zinc-50 p-5">
+        <p class="font-black">محتويات الدورة</p>
+        <div class="space-y-2 mt-4 text-sm">
+          <div class="bg-white border rounded-xl p-3 flex gap-3 items-center"><span class="w-8 h-8 bg-primary text-white rounded-full grid place-items-center text-xs"><i class="fa-solid fa-play"></i></span><div class="flex-1"><p class="font-bold">1. المقدمة والأهداف</p><p class="text-xs text-zinc-500">04:12</p></div><i class="fa-solid fa-lock text-zinc-300 text-xs"></i></div>
+          <div class="bg-white border rounded-xl p-3 flex gap-3 items-center"><span class="w-8 h-8 bg-zinc-900 text-white rounded-full grid place-items-center text-xs">2</span><div class="flex-1"><p class="font-bold">2. التطبيق العملي الأول</p><p class="text-xs text-zinc-500">08:45</p></div><span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">مجاني</span></div>
+          <div class="bg-white border rounded-xl p-3 flex gap-3 items-center opacity-60"><span class="w-8 h-8 bg-zinc-200 rounded-full grid place-items-center text-xs">3</span><div class="flex-1"><p class="font-bold">3. مشروع الدرس</p><p class="text-xs text-zinc-500">12:30</p></div><i class="fa-solid fa-lock text-zinc-300 text-xs"></i></div>
+          <div class="bg-white border rounded-xl p-3 flex gap-3 items-center opacity-60"><span class="w-8 h-8 bg-zinc-200 rounded-full grid place-items-center text-xs">4</span><div class="flex-1"><p class="font-bold">4. الاختبار والشهادة</p><p class="text-xs text-zinc-500">05:00</p></div><i class="fa-solid fa-lock text-zinc-300 text-xs"></i></div>
+        </div>
+        <button id="enrollModalBtn" class="w-full mt-6 bg-primary text-white py-3 rounded-full font-black">الانضمام للدورة</button>
+        <p class="text-xs text-center text-zinc-400 mt-2">30 يوم ضمان استرداد</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-zinc-900 text-white px-6 py-3 rounded-full text-sm font-bold shadow-xl hidden z-[80]"></div>
+
+<script>
+const courses = [
+  {id:1, title:"احتراف Figma من الصفر للاحتراف", cat:"تصميم", level:"مبتدئ", price:199, old:299, rating:4.9, students:12400, duration:"6.5 ساعة", lessons:24, img:"https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80", instructor:"سارة المنصور", avatar:"https://i.pravatar.cc/100?img=26", badge:"الأكثر مبيعاً", desc:"تعلم تصميم واجهات المستخدم باحترافية وبناء نظام تصميم متكامل مع مشاريع حقيقية."},
+  {id:2, title:"تطوير مواقع بـ React & Next.js", cat:"برمجة", level:"متوسط", price:349, old:499, rating:4.8, students:8900, duration:"12 ساعة", lessons:42, img:"https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&q=80", instructor:"محمد التركي", avatar:"https://i.pravatar.cc/100?img=15", badge:"جديد", desc:"بناء مواقع سريعة وتفاعلية باستخدام أحدث تقنيات الويب مع تطبيقات عملية."},
+  {id:3, title:"التسويق الرقمي الشامل 2026", cat:"أعمال", level:"مبتدئ", price:149, old:249, rating:4.9, students:15600, duration:"8 ساعات", lessons:32, img:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80", instructor:"نورة الفهد", avatar:"https://i.pravatar.cc/100?img=48", badge:"خصم 40%", desc:"استراتيجيات التسويق عبر السوشيال ميديا والإعلانات المدفوعة وقياس النتائج."},
+  {id:4, title:"الذكاء الاصطناعي للمبتدئين", cat:"ذكاء", level:"مبتدئ", price:279, old:399, rating:5.0, students:6700, duration:"9 ساعات", lessons:28, img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80", instructor:"د. أحمد الرفاعي", avatar:"https://i.pravatar.cc/100?img=32", badge:"مُحدث", desc:"مدخل عملي لعالم الذكاء الاصطناعي وتعلم الآلة بدون تعقيد مع أدوات جاهزة."},
+  {id:5, title:"اللغة الإنجليزية للمحادثة", cat:"لغة", level:"مبتدئ", price:99, old:199, rating:4.7, students:22100, duration:"15 ساعة", lessons:50, img:"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80", instructor:"James Wilson", avatar:"https://i.pravatar.cc/100?img=12", badge:"مجاني جزئياً", desc:"تحدث بطلاقة في 60 يوم مع تمارين يومية ومحادثات حقيقية مع ناطقين أصليين."},
+  {id:6, title:"تصميم الهوية البصرية", cat:"تصميم", level:"متوسط", price:229, old:329, rating:4.8, students:5400, duration:"7 ساعات", lessons:22, img:"https://images.unsplash.com/photo-1626785774573-6dd65b279390?w=600&q=80", instructor:"سارة المنصور", avatar:"https://i.pravatar.cc/100?img=26", badge:"", desc:"من الفكرة إلى الشعار الكامل مع دليل استخدام احترافي للعلامة التجارية."},
+  {id:7, title:"Python لتحليل البيانات", cat:"برمجة", level:"متقدم", price:399, old:599, rating:4.9, students:4300, duration:"18 ساعة", lessons:56, img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", instructor:"محمد التركي", avatar:"https://i.pravatar.cc/100?img=15", badge:"مسار وظيفي", desc:"تحليل البيانات وتصورها باستخدام Python و Pandas لبناء تقارير تفاعلية."},
+  {id:8, title:"إدارة المشاريع الاحترافية PMP", cat:"أعمال", level:"متقدم", price:499, old:799, rating:4.9, students:3100, duration:"20 ساعة", lessons:38, img:"https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80", instructor:"نورة الفهد", avatar:"https://i.pravatar.cc/100?img=48", badge:"شهادة معتمدة", desc:"تأهيل كامل لاختبار PMP مع دراسات حالة ومحاكاة للاختبار الحقيقي."},
+];
+
+let enrolled = JSON.parse(localStorage.getItem('riwaq_enrolled')||'[]');
+let currentCat = 'all';
+let currentLevel = 'all';
+let searchQ = '';
+let currentLessonId = null;
+
+function render(){
+  const grid = document.getElementById('coursesGrid');
+  let filtered = courses.filter(c=>{
+    const catOk = currentCat==='all' || c.cat===currentCat;
+    const levelOk = currentLevel==='all' || c.level===currentLevel;
+    const searchOk = c.title.includes(searchQ) || c.cat.includes(searchQ) || c.instructor.includes(searchQ);
+    return catOk && levelOk && searchOk;
+  });
+  const sort = document.getElementById('sortFilter').value;
+  if(sort==='price-low') filtered.sort((a,b)=>a.price-b.price);
+  if(sort==='new') filtered.reverse();
+
+  grid.innerHTML = filtered.map(c=>{
+    const isEnrolled = enrolled.includes(c.id);
+    return `
+    <div class="bg-white border rounded-[24px] overflow-hidden hover:shadow-xl hover:-translate-y-1 transition group flex flex-col">
+      <div class="relative">
+        <img src="${c.img}" class="w-full h-44 object-cover">
+        <div class="absolute top-3 right-3 flex gap-2">
+          ${c.badge?`<span class="bg-secondary text-white text-[11px] font-black px-2.5 py-1 rounded-full">${c.badge}</span>`:''}
+          <span class="bg-white/90 backdrop-blur text-xs font-bold px-2.5 py-1 rounded-full">${c.level}</span>
+        </div>
+        <button onclick="toggleFav(${c.id})" class="absolute top-3 left-3 w-8 h-8 bg-white rounded-full grid place-items-center shadow hover:scale-110 transition"><i class="fa-regular fa-heart text-zinc-700 text-sm"></i></button>
+        <div class="absolute bottom-3 right-3 bg-zinc-900 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fa-regular fa-clock"></i> ${c.duration} • ${c.lessons} درس</div>
+        <button onclick="openLesson(${c.id})" class="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 bg-black/30 transition"><span class="bg-white text-zinc-900 w-12 h-12 rounded-full grid place-items-center shadow-lg"><i class="fa-solid fa-play ml-0.5"></i></span></button>
+      </div>
+      <div class="p-4 flex-1 flex flex-col">
+        <div class="flex items-center gap-2 text-xs">
+          <span class="bg-soft text-primary px-2.5 py-1 rounded-full font-bold">${c.cat}</span>
+          <span class="flex items-center gap-1 font-bold"><i class="fa-solid fa-star text-secondary text-[11px]"></i> ${c.rating} <span class="text-zinc-400 font-normal">(${c.students.toLocaleString('ar-EG')})</span></span>
+        </div>
+        <h3 class="font-black leading-6 mt-2 line-clamp-2 min-h-[48px]">${c.title}</h3>
+        <div class="flex items-center gap-2 mt-3">
+          <img src="${c.avatar}" class="w-6 h-6 rounded-full"><span class="text-xs font-bold text-zinc-600">${c.instructor}</span>
+        </div>
+        <div class="flex items-end justify-between mt-4">
+          <div>
+            <p class="font-black text-lg leading-none">${c.price} <span class="text-xs">ر.س</span> <span class="text-xs text-zinc-400 line-through font-normal mr-1">${c.old} ر.س</span></p>
+            <p class="text-[11px] text-green-600 font-bold">خصم لفترة محدودة</p>
+          </div>
+          <button onclick="${isEnrolled?'toggleDrawer()':`enroll(${c.id})`}" class="${isEnrolled?'bg-zinc-900 text-white':'bg-white border-2 border-zinc-900 hover:bg-zinc-900 hover:text-white'} px-4 py-2 rounded-full text-xs font-black transition">${isEnrolled?'تابع التعلم':'انضم الآن'}</button>
+        </div>
+        ${isEnrolled?`<div class="mt-3 bg-zinc-100 rounded-full h-1.5"><div class="bg-primary h-1.5 rounded-full" style="width:${20 + (c.id*7)%60}%"></div></div><p class="text-[11px] text-zinc-500 mt-1 font-bold">${20 + (c.id*7)%60}% مكتمل • درس ${2} من ${c.lessons}</p>`:''}
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('noResults').classList.toggle('hidden', filtered.length!==0);
+  updateEnrolledUI();
+}
+
+function updateEnrolledUI(){
+  document.getElementById('enrolledCount').textContent = enrolled.length;
+  const list = document.getElementById('enrolledList');
+  if(enrolled.length===0){
+    list.innerHTML = `<div class="text-center py-12 text-zinc-400"><i class="fa-regular fa-face-smile text-4xl mb-3 block"></i><p class="font-bold">لم تنضم لأي دورة بعد</p><p class="text-sm">ابدأ رحلتك الآن واختر أول درس</p></div>`;
+    return;
+  }
+  list.innerHTML = enrolled.map(id=>{
+    const c = courses.find(x=>x.id===id);
+    return `<div class="border rounded-2xl p-3 flex gap-3">
+      <img src="${c.img}" class="w-20 h-20 rounded-xl object-cover">
+      <div class="flex-1">
+        <p class="font-black text-sm leading-5">${c.title}</p>
+        <p class="text-xs text-zinc-500">${c.instructor} • ${c.duration}</p>
+        <div class="bg-zinc-100 rounded-full h-1.5 mt-2"><div class="bg-primary h-1.5 rounded-full" style="width:45%"></div></div>
+        <div class="flex justify-between items-center mt-2">
+          <span class="text-xs font-bold text-primary">45% مكتمل</span>
+          <button onclick="openLesson(${c.id})" class="text-xs bg-zinc-900 text-white px-3 py-1 rounded-full font-bold">متابعة</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('') + `<button onclick="clearEnrolled()" class="w-full mt-4 text-xs text-zinc-500 underline">إلغاء جميع الاشتراكات</button>`;
+}
+
+function enroll(id){
+  if(!enrolled.includes(id)){
+    enrolled.push(id);
+    localStorage.setItem('riwaq_enrolled', JSON.stringify(enrolled));
+    toast('تم الانضمام للدورة بنجاح 🎉');
+    render();
+  }
+}
+function clearEnrolled(){ enrolled=[]; localStorage.removeItem('riwaq_enrolled'); render(); toast('تم الإلغاء'); }
+function toggleFav(id){ toast('تمت الإضافة للمفضلة ♥'); }
+function toggleDrawer(){ document.getElementById('learningDrawer').classList.toggle('hidden'); }
+
+function openLesson(id){
+  currentLessonId=id;
+  const c=courses.find(x=>x.id===id);
+  document.getElementById('lessonTitle').textContent=c.title;
+  document.getElementById('lessonImage').src=c.img;
+  document.getElementById('lessonDesc').textContent=c.desc;
+  document.getElementById('enrollModalBtn').textContent = enrolled.includes(id) ? 'تابع التعلم - 45% مكتمل' : `انضم الآن - ${c.price} ر.س`;
+  document.getElementById('enrollModalBtn').onclick = ()=>{ enroll(id); closeLesson(); toggleDrawer(); };
+  document.getElementById('lessonModal').classList.remove('hidden');
+}
+function closeLesson(){ document.getElementById('lessonModal').classList.add('hidden'); }
+function openVideo(){ document.getElementById('videoModal').classList.remove('hidden'); }
+function closeVideo(){ document.getElementById('videoModal').classList.add('hidden'); }
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.remove('hidden');
+  setTimeout(()=>t.classList.add('hidden'),2500);
+}
+
+// Events
+document.querySelectorAll('.cat-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.cat-btn').forEach(x=>x.classList.remove('active','bg-zinc-900','text-white'));
+    document.querySelectorAll('.cat-btn').forEach(x=>x.classList.add('bg-white','border'));
+    b.classList.add('active','bg-zinc-900','text-white'); b.classList.remove('bg-white','border');
+    currentCat=b.dataset.cat; render();
+  });
+});
+document.getElementById('searchInput').addEventListener('input',e=>{ searchQ=e.target.value; render(); });
+document.getElementById('searchMobile')?.addEventListener('input',e=>{ searchQ=e.target.value; render(); });
+document.getElementById('levelFilter').addEventListener('change',e=>{ currentLevel=e.target.value; render(); });
+document.getElementById('sortFilter').addEventListener('change',render);
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+document.getElementById('myLearningBtn').addEventListener('click',toggleDrawer);
+
+// FAQ
+document.querySelectorAll('.faq-item button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const content=btn.nextElementSibling;
+    const icon=btn.querySelector('i');
+    content.classList.toggle('hidden');
+    icon.classList.toggle('fa-plus'); icon.classList.toggle('fa-minus');
+  });
+});
+
+// Pricing toggle
+document.getElementById('yearlyBtn').addEventListener('click',()=>{
+  document.getElementById('yearlyBtn').classList.add('bg-white','text-zinc-900');
+  document.getElementById('yearlyBtn').classList.remove('text-white/70');
+  document.getElementById('monthlyBtn').classList.remove('bg-white','text-zinc-900');
+  document.getElementById('monthlyBtn').classList.add('text-white/70');
+  document.getElementById('proPrice').textContent='1249';
+  toast('تم تفعيل الخصم السنوي 30% 🎉');
+});
+document.getElementById('monthlyBtn').addEventListener('click',()=>{
+  document.getElementById('monthlyBtn').classList.add('bg-white','text-zinc-900');
+  document.getElementById('yearlyBtn').classList.remove('bg-white','text-zinc-900');
+  document.getElementById('yearlyBtn').classList.add('text-white/70');
+  document.getElementById('proPrice').textContent='149';
+});
+
+render();
+</script>
+</body>
+</html>
